@@ -1,0 +1,22 @@
+﻿name: RoninOS Review
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: freewho99/roninos-review-action@v1.0.0
+        with:
+          github-token: ${{ github.token }}
+          roninos-version: '3.0.0'
+          head-sha: ${{ github.event.pull_request.head.sha }}
