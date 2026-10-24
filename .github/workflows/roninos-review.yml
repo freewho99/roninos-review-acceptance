@@ -1,4 +1,4 @@
-name: RoninOS Review
+﻿name: RoninOS Review
 
 on:
   pull_request:
@@ -19,5 +19,5 @@ jobs:
         with:
           github-token: ${{ github.token }}
           roninos-version: '3.0.0'
-          head-sha: ${{ github.event.pull_request.head.sha }}`n          base-sha: ${{ github.event.pull_request.base.sha }}
-
+          head-sha: ${{ github.event.pull_request.head.sha }}
+          base-sha: ${{ github.event.pull_request.base.sha }}
