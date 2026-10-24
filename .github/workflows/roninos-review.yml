@@ -15,12 +15,14 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Debug range
+      - name: Debug CLI range
         run: |
-          echo "base=${{ github.event.pull_request.base.sha }} head=${{ github.event.pull_request.head.sha }}"
-          git log --oneline -3
-          git diff --stat "${{ github.event.pull_request.base.sha }}...${{ github.event.pull_request.head.sha }}"
-          git diff --name-only "${{ github.event.pull_request.base.sha }}...${{ github.event.pull_request.head.sha }}"
+          BASE="${{ github.event.pull_request.base.sha }}"
+          HEAD_SHA="${{ github.event.pull_request.head.sha }}"
+          echo "base=$BASE head=$HEAD_SHA"
+          git rev-parse "$BASE...$HEAD_SHA" || true
+          npx --yes roninos@3.0.0 audit "$BASE...$HEAD_SHA" --json > /tmp/debug-receipt.json || true
+          head -c 1200 /tmp/debug-receipt.json
       - uses: freewho99/roninos-review-action@v1.0.2
         with:
           github-token: ${{ github.token }}
