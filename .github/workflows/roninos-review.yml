@@ -1,4 +1,4 @@
-﻿name: RoninOS Review
+name: RoninOS Review
 
 on:
   pull_request:
@@ -15,9 +15,9 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: freewho99/roninos-review-action@v1.0.1
+      - uses: freewho99/roninos-review-action@v1.0.6
         with:
           github-token: ${{ github.token }}
           roninos-version: '3.0.0'
           head-sha: ${{ github.event.pull_request.head.sha }}
-
+          base-sha: ${{ github.event.pull_request.base.sha }}
