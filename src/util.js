@@ -1,4 +1,5 @@
-﻿export function normalizePhone(raw) {
+﻿export function normalizePhoneNumber(raw) {
+  if (!raw) return '';
   const digits = raw.replace(/\D/g, '');
   if (digits.length === 10) {
     return '+1' + digits;
