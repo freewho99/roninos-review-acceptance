@@ -1,15 +1,9 @@
-﻿export function calculateInvoiceA(items) {
-  let total = 0;
-  for (const item of items) {
-    total += item.price * item.quantity;
+﻿export function normalizePhone(raw) {
+  const digits = raw.replace(/\D/g, '');
+  if (digits.length === 10) {
+    return '+1' + digits;
+  } else if (digits.length === 11 && digits.startsWith('1')) {
+    return '+' + digits;
   }
-  return total;
-}
-
-export function calculateInvoiceB(items) {
-  let total = 0;
-  for (const item of items) {
-    total += item.price * item.quantity;
-  }
-  return total;
+  return digits ? '+' + digits : '';
 }
