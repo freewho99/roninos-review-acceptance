@@ -1,10 +1,5 @@
-﻿export function normalizePhoneNumber(raw) {
-  if (!raw) return '';
-  const digits = raw.replace(/\D/g, '');
-  if (digits.length === 10) {
-    return '+1' + digits;
-  } else if (digits.length === 11 && digits.startsWith('1')) {
-    return '+' + digits;
-  }
-  return digits ? '+' + digits : '';
+import { normalizePhoneNumber as canonicalNormalizePhoneNumber } from './shared/utils/phone.js';
+
+export function normalizePhoneNumber(raw) {
+  return canonicalNormalizePhoneNumber(raw);
 }
